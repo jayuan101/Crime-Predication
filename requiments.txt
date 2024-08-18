@@ -1,7 +1,7 @@
 streamlit
 pandas
 numpy
-seaborn
+seaborn >  0.13.2
 matplotlib
 plotly
 tensorflow
