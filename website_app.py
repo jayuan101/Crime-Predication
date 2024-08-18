@@ -29,7 +29,7 @@ def main():
     @st.cache
     def load_data():
         # Replace 'your_data.csv' with the path to your dataset
-        data = pd.read_csv('your_data.csv')
+        data = pd.read_csv('Crime_Map_.csv')
         return data
 
     data = load_data()
