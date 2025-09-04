@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import plotly.express as px
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
@@ -17,9 +15,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 # Streamlit App
 def main():
     st.title("NYC Crime Prediction")
-    st.write("""
-        This app predicts NYC crimes using various machine learning models.
-    """)
+    st.write("This app predicts NYC crimes using various machine learning models.")
 
     # Load your dataset
     @st.cache_data
@@ -47,7 +43,6 @@ def main():
         # Encode categorical variables if any
         for col in X.select_dtypes(include=['object']).columns:
             X[col] = LabelEncoder().fit_transform(X[col])
-
         if y.dtype == 'object':
             y = LabelEncoder().fit_transform(y)
 
@@ -81,13 +76,18 @@ def main():
         if model_name == "Random Forest":
             st.subheader("Feature Importances")
             importances = model.feature_importances_
-            indices = np.argsort(importances)[::-1]
-            plt.figure(figsize=(10,6))
-            plt.title("Feature Importances")
-            plt.bar(range(X.shape[1]), importances[indices], align="center")
-            plt.xticks(range(X.shape[1]), np.array(features)[indices], rotation=90)
-            plt.xlim([-1, X.shape[1]])
-            st.pyplot(plt)
+            importance_df = pd.DataFrame({
+                'Feature': features,
+                'Importance': importances
+            }).sort_values(by='Importance', ascending=False)
+
+            fig = px.bar(
+                importance_df, 
+                x='Feature', 
+                y='Importance', 
+                title="Random Forest Feature Importances"
+            )
+            st.plotly_chart(fig, use_container_width=True)
 
 if __name__ == "__main__":
     main()
