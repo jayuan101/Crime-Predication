@@ -1,4 +1,4 @@
-#NYC Crime Prediction Using Machine Learning
+# NYC Crime Prediction Using Machine Learning
 
 This project leverages machine learning techniques to predict crime occurrences, aiming to assist law enforcement agencies in proactive policing and resource allocation.
 
