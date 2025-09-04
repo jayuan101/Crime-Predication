@@ -1,11 +1,9 @@
-streamlit
-pandas
-numpy
-seaborn >  0.13.2
-matplotlib
-plotly
-tensorflow
-scikit-learn
-Keras
-warning
-
+pandas==2.1.1
+numpy==1.26.0
+matplotlib==3.8.0
+seaborn==0.12.3
+plotly==6.9.0
+scikit-learn==1.3.2
+tensorflow==2.15.0
+keras==2.15.0
+streamlit==1.26.0
